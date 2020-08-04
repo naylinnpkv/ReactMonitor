@@ -1,8 +1,13 @@
 const sendContentScript = require("./sendContentScript");
 const makeTreeCreator = require("./makeTreeCreator");
 
-module.exports = function (container) {
-  const fiberRoot = container._reactRootContainer._internalRoot;
+function get_fiber_root(document_children) {
+  for (let ele of document_children) {
+    if (ele.hasOwnProperty("_reactRootContainer")) return ele;
+  }
+}
+ function () {
+  const fiberRoot = container._reactRoot.container.
   const hostRoot = fiberRoot.current;
   const treeCreator = makeTreeCreator();
 
@@ -23,3 +28,5 @@ module.exports = function (container) {
     }, 200);
   });
 };
+
+export module createTree.js;
