@@ -1,13 +1,10 @@
 const sendContentScript = require("./sendContentScript");
 const makeTreeCreator = require("./makeTreeCreator");
 
-function get_fiber_root(document_children) {
-  for (let ele of document_children) {
-    if (ele.hasOwnProperty("_reactRootContainer")) return ele;
-  }
-}
- function () {
-  const fiberRoot = container._reactRoot.container.
+//this function will be invoked in containerWrapper.js
+
+module.exports = function (container) {
+  const fiberRoot = container._reactRootContainer._internalRoot;
   const hostRoot = fiberRoot.current;
   const treeCreator = makeTreeCreator();
 
